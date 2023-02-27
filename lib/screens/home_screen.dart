@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
               child: Container(
-            color: Colors.green,
+            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
             child: Column(
               children: [
                 const BigDate(),
@@ -39,33 +39,62 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: const Text('Reminders'))
                   ],
                 ),
-                Container(
-                  child: Column(
-                    children: [
-                      PersonContainer(
-                        imgpath: 'assets/images/tarun.jpg',
-                        name: 'Tarun',
-                        occasion: 'National maths day',
-                      ),
-                      PersonContainer(
-                          imgpath: 'assets/images/ganapathi.jpg',
-                          name: 'Ganapathi',
-                          occasion: 'Birthday'),
-                      PersonContainer(
-                          imgpath: 'assets/images/mummydaddy.jpg',
-                          name: 'Mummy daddy',
-                          occasion: 'Wedding anniversary'),
-                      PersonContainer(
-                          imgpath: 'assets/images/veterinary.jpg',
-                          name: 'Veterinary day',
-                          occasion: 'National veterinary day'),
-                      PersonContainer(
-                        imgpath: 'assets/images/chetan.jpg',
-                        name: 'Chetan',
-                        occasion: 'Birthday',
-                      ),
-                    ],
+                Expanded(
+                  child: Scrollbar(
+                    thickness: 100,
+                    radius: const Radius.circular(10),
+                    child: ListView(
+                      children: const [
+                        PersonContainer(
+                          imgpath: 'assets/images/tarun.jpg',
+                          name: 'Tarun',
+                          occasion: 'National maths day',
+                        ),
+                        PersonContainer(
+                            imgpath: 'assets/images/ganapathi.jpg',
+                            name: 'Ganapathi',
+                            occasion: 'Birthday'),
+                        PersonContainer(
+                            imgpath: 'assets/images/mummydaddy.jpg',
+                            name: 'Mummy daddy',
+                            occasion: 'Wedding anniversary'),
+                        PersonContainer(
+                            imgpath: 'assets/images/veterinary.jpg',
+                            name: 'Veterinary day',
+                            occasion: 'veterinary day'),
+                        PersonContainer(
+                          imgpath: 'assets/images/chetan.jpg',
+                          name: 'Chetan',
+                          occasion: 'Birthday',
+                        ),
+                        PersonContainer(
+                          imgpath: 'assets/images/tarun.jpg',
+                          name: 'Tarun',
+                          occasion: 'National maths day',
+                        ),
+                        PersonContainer(
+                            imgpath: 'assets/images/ganapathi.jpg',
+                            name: 'Ganapathi',
+                            occasion: 'Birthday'),
+                        PersonContainer(
+                            imgpath: 'assets/images/mummydaddy.jpg',
+                            name: 'Mummy daddy',
+                            occasion: 'Wedding anniversary'),
+                        PersonContainer(
+                            imgpath: 'assets/images/veterinary.jpg',
+                            name: 'Veterinary day',
+                            occasion: 'veterinary day'),
+                        PersonContainer(
+                          imgpath: 'assets/images/chetan.jpg',
+                          name: 'Chetan',
+                          occasion: 'Birthday',
+                        ),
+                      ],
+                    ),
                   ),
+                ),
+                Container(
+                  height: 100,
                 )
               ],
             ),
@@ -98,13 +127,14 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              print('add person');
-            },
-            child: Icon(Icons.add),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(2)),
+        onPressed: () {
+          print('add person');
+        },
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ));
   }
 }
