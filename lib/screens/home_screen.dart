@@ -1,6 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:prompt/components/person_container.dart';
+import 'package:prompt/global_constants.dart';
+import 'package:prompt/screens/add_person_screen.dart';
 import '../components/big_date.dart';
+
+const persons = [
+  {
+    'name': 'Tarun',
+    'image': 'assets/images/tarun.jpg',
+    'day': 'National maths day'
+  },
+  {
+    'name': 'Ganapathi',
+    'image': 'assets/images/tarun.jpg',
+    'day': 'National maths day'
+  },
+  {
+    'name': 'Mummy daddy',
+    'image': 'assets/images/tarun.jpg',
+    'day': 'National maths day'
+  },
+  {
+    'name': 'N',
+    'image': 'assets/images/tarun.jpg',
+    'day': 'National maths day'
+  },
+  {
+    'name': 'Chetan',
+    'image': 'assets/images/tarun.jpg',
+    'day': 'National maths day'
+  },
+];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,6 +40,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _firstController = ScrollController();
   int month = 1;
   int date = 1;
   @override
@@ -19,89 +50,83 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Row(
         children: [
           Expanded(
-              child: Container(
-            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
-            child: Column(
-              children: [
-                const BigDate(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    OutlinedButton(
-                        onPressed: () {
-                          print('days');
-                        },
-                        child: const Text('Days')),
-                    OutlinedButton(
-                        onPressed: () {
-                          print('reminders');
-                        },
-                        child: const Text('Reminders'))
-                  ],
-                ),
-                Expanded(
-                  child: Scrollbar(
-                    thickness: 100,
-                    radius: const Radius.circular(10),
-                    child: ListView(
-                      children: const [
-                        PersonContainer(
-                          imgpath: 'assets/images/tarun.jpg',
-                          name: 'Tarun',
-                          occasion: 'National maths day',
+            child: Container(
+
+              child: Column(
+                children: [
+                  const BigDate(color: Colors.black,),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(18, 0, 18, 4),
+                    height: 50,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              print('days');
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: const Center(
+                                  child: Text(
+                                'Days',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'roboto_mono_regular',
+                                ),
+                              )),
+                            ),
+                          ),
                         ),
-                        PersonContainer(
-                            imgpath: 'assets/images/ganapathi.jpg',
-                            name: 'Ganapathi',
-                            occasion: 'Birthday'),
-                        PersonContainer(
-                            imgpath: 'assets/images/mummydaddy.jpg',
-                            name: 'Mummy daddy',
-                            occasion: 'Wedding anniversary'),
-                        PersonContainer(
-                            imgpath: 'assets/images/veterinary.jpg',
-                            name: 'Veterinary day',
-                            occasion: 'veterinary day'),
-                        PersonContainer(
-                          imgpath: 'assets/images/chetan.jpg',
-                          name: 'Chetan',
-                          occasion: 'Birthday',
-                        ),
-                        PersonContainer(
-                          imgpath: 'assets/images/tarun.jpg',
-                          name: 'Tarun',
-                          occasion: 'National maths day',
-                        ),
-                        PersonContainer(
-                            imgpath: 'assets/images/ganapathi.jpg',
-                            name: 'Ganapathi',
-                            occasion: 'Birthday'),
-                        PersonContainer(
-                            imgpath: 'assets/images/mummydaddy.jpg',
-                            name: 'Mummy daddy',
-                            occasion: 'Wedding anniversary'),
-                        PersonContainer(
-                            imgpath: 'assets/images/veterinary.jpg',
-                            name: 'Veterinary day',
-                            occasion: 'veterinary day'),
-                        PersonContainer(
-                          imgpath: 'assets/images/chetan.jpg',
-                          name: 'Chetan',
-                          occasion: 'Birthday',
-                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              print('remidners');
+                            },
+                            child: const Center(
+                                child: Text(
+                              'Reminders',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'roboto_mono_regular',
+                              ),
+                            )),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                ),
-                Container(
-                  height: 100,
-                )
-              ],
+                  Expanded(
+                    child: Scrollbar(
+                        thumbVisibility: true,
+                        controller: _firstController,
+                        thickness: 10, //width of scrollbar
+                        radius: const Radius.circular(
+                            20), //corner radius of scrollbar
+                        scrollbarOrientation: ScrollbarOrientation.left,
+                        child: ListView.builder(
+                            controller: _firstController,
+                            itemCount: 20,
+                            itemBuilder: (context, index) => PersonContainer(
+                                  name: persons[index % 5]['name']!,
+                                  imgpath: persons[index % 5]['image']!,
+                                  occasion: persons[index % 5]['day']!,
+                                ))),
+                  ),
+                  Container(
+                    height: 100,
+                  )
+                ],
+              ),
             ),
-          )),
+          ),
           Container(
             width: 60,
-            color: Colors.pink,
+            color: primary_color,
             child: ListView(
               semanticChildCount: 31,
               children: [
@@ -118,7 +143,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 60,
                       color: (date == i) ? Colors.limeAccent : null,
                       child: Center(
-                        child: Text('$i'),
+                        child: Text('$i', style: const TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'roboto_mono_regular',
+                          color: Colors.white
+                        ),),
                       ),
                     ),
                   ),
@@ -130,11 +159,31 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(2)),
         onPressed: () {
-          print('add person');
+          Navigator.of(context).push(_createRoute());
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white, size: 30,),
+        backgroundColor: primary_color,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     ));
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const AddPersonScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

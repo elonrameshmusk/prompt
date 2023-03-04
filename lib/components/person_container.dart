@@ -13,7 +13,7 @@ class PersonContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+        margin: const EdgeInsets.fromLTRB(18, 5, 0, 5),
         child: Row(
           children: [
             Container(
@@ -34,17 +34,17 @@ class PersonContainer extends StatelessWidget {
                   Text(
                     name,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.normal),
+                        fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'roboto_mono_regular'),
                   ),
                   Text(
                     occasion,
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w100),
+                        fontSize: 16, fontWeight: FontWeight.w100, fontFamily: 'roboto_mono_light'),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.more_vert)
+            const Icon(Icons.more_vert, size: 25, color: Colors.black,)
           ],
         ));
   }

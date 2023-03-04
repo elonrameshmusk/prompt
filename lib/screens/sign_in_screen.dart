@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prompt/screens/reminders_screen.dart';
 import 'home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: TextButton(
           onPressed: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                .push(MaterialPageRoute(builder: (context) => RemindersScreen()));
           },
           child: Text('Sign In'),
         ),
