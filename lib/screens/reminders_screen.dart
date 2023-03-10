@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prompt/components/reminder_container.dart';
 import 'package:prompt/global_constants.dart';
 import 'package:prompt/screens/add_reminder_screen.dart';
 import '../components/big_date.dart';
@@ -83,7 +84,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
                             child: ListView.builder(
                                 controller: _firstController,
                                 itemCount: 20,
-                                itemBuilder: (context, index) => Text('i\'m working on a technology that will change the world'))),
+                                itemBuilder: (context, index) => const ReminderContainer())),
                       ),
                       Container(
                         height: 100,

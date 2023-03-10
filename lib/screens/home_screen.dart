@@ -51,10 +51,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: Container(
-
               child: Column(
                 children: [
-                  const BigDate(color: Colors.black,),
+                  const BigDate(
+                    color: Colors.black,
+                  ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(18, 0, 18, 4),
                     height: 50,
@@ -70,14 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Colors.black, width: 2)),
+                                      color: Colors.black, width: 2),
+                              borderRadius: BorderRadius.circular(2.0)),
                               child: const Center(
                                   child: Text(
                                 'Days',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'roboto_mono_regular',
-                                ),
+                                    fontSize: 16,
+                                    fontFamily: 'roboto_mono_regular',
+                                    fontWeight: FontWeight.bold),
                               )),
                             ),
                           ),
@@ -91,9 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Text(
                               'Reminders',
                               style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'roboto_mono_regular',
-                              ),
+                                  fontSize: 16,
+                                  fontFamily: 'roboto_mono_regular',
+                                  fontWeight: FontWeight.bold),
                             )),
                           ),
                         )
@@ -101,12 +103,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Expanded(
-                    child: Scrollbar(
+                    child: RawScrollbar(
+                        interactive: true,
                         thumbVisibility: true,
+                        thumbColor: primary_color,
+
                         controller: _firstController,
-                        thickness: 10, //width of scrollbar
+                        thickness: 8, //width of scrollbar
                         radius: const Radius.circular(
-                            20), //corner radius of scrollbar
+                            2), //corner radius of scrollbar
                         scrollbarOrientation: ScrollbarOrientation.left,
                         child: ListView.builder(
                             controller: _firstController,
@@ -143,11 +148,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 60,
                       color: (date == i) ? Colors.limeAccent : null,
                       child: Center(
-                        child: Text('$i', style: const TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'roboto_mono_regular',
-                          color: Colors.white
-                        ),),
+                        child: Text(
+                          '$i',
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'roboto_mono_regular',
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
@@ -161,7 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           Navigator.of(context).push(_createRoute());
         },
-        child: const Icon(Icons.add, color: Colors.white, size: 30,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 30,
+        ),
         backgroundColor: primary_color,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

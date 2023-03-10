@@ -16,7 +16,7 @@ class _BigDateState extends State<BigDate> {
       padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'Wednesday',

@@ -18,7 +18,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: TextButton(
           onPressed: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => RemindersScreen()));
+                .push(MaterialPageRoute(builder: (context) => HomeScreen()));
           },
           child: Text('Sign In'),
         ),
