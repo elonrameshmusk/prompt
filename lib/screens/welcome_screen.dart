@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prompt/global_constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:prompt/screens/signin_screen.dart';
+import 'package:prompt/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -50,7 +52,10 @@ class WelcomeScreen extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    print('Login');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignInScreen()),
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(0,0,0, 8),
@@ -72,7 +77,10 @@ class WelcomeScreen extends StatelessWidget {
 
               GestureDetector(
                   onTap: () {
-                    print('Create account');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignupScreen()),
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.fromLTRB(0,8,0, 0),
