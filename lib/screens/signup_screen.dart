@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:prompt/api_services/api_services.dart';
 import 'package:prompt/global_constants.dart';
-
+import '../models/register_model.dart';
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -11,6 +12,11 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  // Future<RegisterModel>? _registerModel;
+  void _register(String email, String password) async{
+    RegisterModel result = await ApiServices().register(email, password);
+    print(result);
+  }
   @override
   void dispose() {
     _emailController.dispose();
@@ -102,8 +108,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           GestureDetector(
               onTap: () {
-                print(_emailController.text);
-                print(_passwordController.text);
+                _register(_emailController.text, _passwordController.text);
               },
               child: Container(
                 margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
